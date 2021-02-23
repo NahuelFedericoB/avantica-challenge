@@ -1,5 +1,5 @@
-const App = () => {
-  return <div>Hello World</div>;
-};
+import SearchSummary from '../SearchSummary';
+
+const App = () => <SearchSummary />;
 
 export default App;
