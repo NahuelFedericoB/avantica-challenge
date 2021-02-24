@@ -1,3 +1,11 @@
-const SearchSummary = () => <h1>Soy el search summary</h1>;
+import SearchFilterBar from './components/SearchFilterBar';
+
+const SearchSummary = () => {
+  return (
+    <div>
+      <SearchFilterBar />
+    </div>
+  );
+};
 
 export default SearchSummary;

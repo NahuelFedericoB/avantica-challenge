@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render correctly 1`] = `
+<DocumentFragment>
+  <h1>
+    Soy el search summary
+  </h1>
+</DocumentFragment>
+`;
