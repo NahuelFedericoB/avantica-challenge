@@ -9,9 +9,7 @@ const SearchFilterBar = () => {
     <div className={styles.container}>
       <TextBar placeholder="Type something..." />
       <DropDown />
-      <div>
-        <SearchButton>Search</SearchButton>
-      </div>
+      <SearchButton>Search</SearchButton>
     </div>
   );
 };
