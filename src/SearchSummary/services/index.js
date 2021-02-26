@@ -1,0 +1,1 @@
+export { getSearchFromGoogle } from './services';

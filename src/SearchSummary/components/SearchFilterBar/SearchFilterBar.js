@@ -10,7 +10,11 @@ const SearchFilterBar = () => {
 
   return (
     <div className={styles.container}>
-      <TextBar placeholder="Type something..." onChange={handleFilterChange('textBar')} />
+      <TextBar
+        placeholder="Type something..."
+        onChange={handleFilterChange('textBar')}
+        value={filters.textBar}
+      />
       <DropDown onChange={handleFilterChange('dropDown')} activeValue={filters.dropDown} />
       <SearchButton>Search</SearchButton>
     </div>

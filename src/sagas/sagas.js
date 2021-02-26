@@ -1,9 +1,9 @@
 import { fork } from 'redux-saga/effects';
 
-const nullFuction = () => null;
+import { runPerformSearchWatcher } from '../SearchSummary/sagas';
 
 function* rootSaga() {
-  yield fork(nullFuction);
+  yield fork(runPerformSearchWatcher);
 }
 
 export default rootSaga;
