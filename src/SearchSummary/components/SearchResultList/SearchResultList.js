@@ -2,22 +2,28 @@ import useSearchResultList from './hooks';
 import styles from './SearchResultList.module.scss';
 
 const SearchResultList = () => {
-  const { results } = useSearchResultList();
+  const { searchResults, isLoadingSearch } = useSearchResultList();
 
-  return (
-    <div className={styles.resultListContainer}>
-      {results.length > 0 &&
-        results.map(result => (
-          <div key={result.title} className={styles.resultBlock}>
-            <div className={styles.displayLink}>{result.displayLink}</div>
-            <div className={styles.resultLink}>
-              <a href={result.linkToPage}>{result.title}</a>
+  const Loading = () => <div className={styles.loading}>Loading...</div>;
+
+  const List = () => {
+    return (
+      <div className={styles.resultListContainer}>
+        {searchResults.length > 0 &&
+          searchResults.map(result => (
+            <div key={`${result.title}__${result.displayLink}`} className={styles.resultBlock}>
+              <div className={styles.displayLink}>{result.displayLink}</div>
+              <div className={styles.resultLink}>
+                <a href={result.linkToPage}>{result.title}</a>
+              </div>
+              <p className={styles.snippet}>{result.snippet}</p>
             </div>
-            <p className={styles.snippet}>{result.snippet}</p>
-          </div>
-        ))}
-    </div>
-  );
+          ))}
+      </div>
+    );
+  };
+
+  return <div>{isLoadingSearch ? <Loading /> : <List />}</div>;
 };
 
 export default SearchResultList;

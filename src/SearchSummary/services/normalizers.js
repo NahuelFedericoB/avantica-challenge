@@ -18,4 +18,16 @@ const normalizeGoogleSearch = ({ items = [] }) => {
   return normalizedData;
 };
 
-export { normalizeGoogleSearch };
+const normalizeBingSearch = ({ webPages = {} }) => {
+  const items = webPages.value || [];
+  const normalizedData = items.map(item => ({
+    displayLink: get(item, 'displayUrl', ''),
+    title: get(item, 'name', ''),
+    snippet: get(item, 'snippet'),
+    linkToPage: get(item, 'url', ''),
+  }));
+
+  return normalizedData;
+};
+
+export { normalizeGoogleSearch, normalizeBingSearch };

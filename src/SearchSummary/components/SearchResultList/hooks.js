@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux';
 
-import { getGoogleSearchResults } from '../../selectors';
+import { getSearchResults, getIsLoadingSearch } from '../../selectors';
 
 const useSearchFilterBar = () => {
-  const results = useSelector(getGoogleSearchResults);
+  const searchResults = useSelector(getSearchResults);
+  const { isLoadingSearch } = useSelector(getIsLoadingSearch);
 
   return {
-    results,
+    searchResults,
+    isLoadingSearch,
   };
 };
 

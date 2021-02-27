@@ -1,3 +1,5 @@
 export const getSummaryFilters = state => state.searchSummary.filters;
 
-export const getGoogleSearchResults = state => state.searchSummary.googleSearchResults;
+export const getSearchResults = state => state.searchSummary.searchResults.data;
+
+export const getIsLoadingSearch = state => state.searchSummary.isLoadingSearch;

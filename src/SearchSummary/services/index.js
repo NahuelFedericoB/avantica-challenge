@@ -1,1 +1,1 @@
-export { getSearchFromGoogle } from './services';
+export { getSearchFromGoogle, getSearchFromBing } from './services';
