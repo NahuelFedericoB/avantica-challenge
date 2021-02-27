@@ -11,7 +11,7 @@ const normalizeGoogleSearch = ({ items = [] }) => {
   const normalizedData = items.map(item => ({
     displayLink: get(item, 'displayLink', ''),
     title: get(item, 'title', ''),
-    snippet: get(item, 'snippet'),
+    snippet: get(item, 'snippet', ''),
     linkToPage: get(item, 'link', ''),
   }));
 
@@ -23,7 +23,7 @@ const normalizeBingSearch = ({ webPages = {} }) => {
   const normalizedData = items.map(item => ({
     displayLink: get(item, 'displayUrl', ''),
     title: get(item, 'name', ''),
-    snippet: get(item, 'snippet'),
+    snippet: get(item, 'snippet', ''),
     linkToPage: get(item, 'url', ''),
   }));
 

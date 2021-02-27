@@ -68,4 +68,9 @@ const searchSummaryReducer = combineReducers({
   isLoadingSearch: isLoadingsearchReducer,
 });
 
-export { searchSummaryReducer, filtersInitialState };
+export {
+  searchSummaryReducer,
+  filtersInitialState,
+  isLoadingSearchInitialState,
+  searchResultsInitialState,
+};

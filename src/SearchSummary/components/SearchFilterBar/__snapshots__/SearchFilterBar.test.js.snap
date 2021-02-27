@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFilterBar should render correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <input
+      class="textBar"
+      placeholder="Type something..."
+      value=""
+    />
+    <select
+      class="dropDown"
+      id="engines"
+      name="searchEngines"
+    >
+      <option
+        value="google"
+      >
+        Google
+      </option>
+      <option
+        value="bing"
+      >
+        Bing
+      </option>
+      <option
+        value="both"
+      >
+        Both
+      </option>
+    </select>
+    <button
+      class="button"
+      type="button"
+    >
+      Search
+    </button>
+  </div>
+</DocumentFragment>
+`;

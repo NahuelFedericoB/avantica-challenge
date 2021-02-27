@@ -39,4 +39,4 @@ function* runPerformSearchWatcher() {
   yield takeLatest(PERFORM_SEARCH, runPerformSearchSaga);
 }
 
-export { runPerformSearchWatcher };
+export { runPerformSearchWatcher, runPerformSearchSaga };
