@@ -1,5 +1,5 @@
 import { useAction } from '../../../common';
-import { performSearch } from '../../actions';
+import { performSearch } from '../../state/actions';
 
 const useSearchButton = () => {
   const runPerformSearch = useAction(performSearch);

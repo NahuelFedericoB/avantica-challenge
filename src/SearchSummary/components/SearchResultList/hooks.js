@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { getSearchResults, getIsLoadingSearch } from '../../selectors';
+import { getSearchResults, getIsLoadingSearch } from '../../state/selectors';
 
 const useSearchFilterBar = () => {
   const searchResults = useSelector(getSearchResults);

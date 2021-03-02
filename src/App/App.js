@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 
 import SearchSummary from '../SearchSummary';
-import createStore from '../store';
+import createStore from '../redux/store';
 
 const store = createStore();
 

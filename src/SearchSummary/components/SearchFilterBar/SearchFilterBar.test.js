@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { fireEvent, render } from '@testing-library/react';
 
-import createStore from '../../../store';
+import createStore from '../../../redux/store';
 
 import SearchFilterBar from './SearchFilterBar';
 

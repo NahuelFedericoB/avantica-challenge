@@ -1,9 +1,10 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
+import { getSearchFromGoogle, getSearchFromBing } from '../../services';
+
 import { PERFORM_SEARCH } from './actionTypes';
 import { setSearchResults, setIsLoadingSearch } from './actions';
 import { getSummaryFilters } from './selectors';
-import { getSearchFromGoogle, getSearchFromBing } from './services';
 
 function* runPerformSearchSaga() {
   const params = yield select(getSummaryFilters);

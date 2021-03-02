@@ -1,12 +1,12 @@
 import { Provider } from 'react-redux';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 
-import createStore from '../store';
+import createStore from '../redux/store';
+import { getSearchFromGoogle, getSearchFromBing } from '../services';
 
-import { getSearchFromGoogle, getSearchFromBing } from './services';
 import SearchSummary from './SearchSummary';
 
-jest.mock('./services');
+jest.mock('../services');
 
 function mockGetSearchFromGoogle() {
   getSearchFromGoogle.mockResolvedValueOnce([

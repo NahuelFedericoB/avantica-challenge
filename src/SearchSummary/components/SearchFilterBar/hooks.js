@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import debounce from 'lodash/debounce';
 
 import { useAction } from '../../../common';
-import { setSearchFilters } from '../../actions';
-import { getSummaryFilters } from '../../selectors';
+import { setSearchFilters } from '../../state/actions';
+import { getSummaryFilters } from '../../state/selectors';
 import { oneSecond } from '../../../constants';
 
 const useSearchFilterBar = () => {
