@@ -1,29 +1,18 @@
 import { SET_SEARCH_FILTERS, SET_IS_LOADING_SEARCH, SET_SEARCH_RESULTS } from './actionTypes';
-import {
-  searchSummaryReducer,
-  filtersInitialState,
-  isLoadingSearchInitialState,
-  searchResultsInitialState,
-} from './reducers';
-
-const reducerInitialState = {
-  filters: filtersInitialState,
-  searchResults: searchResultsInitialState,
-  isLoadingSearch: isLoadingSearchInitialState,
-};
+import { searchSummaryReducer, searchSummaryReducerInitialState } from './reducers';
 
 describe('Summary Reducer', () => {
   it('should initialize correctly', () => {
     const state = searchSummaryReducer();
 
-    expect(state).toEqual(reducerInitialState);
+    expect(state).toEqual(searchSummaryReducerInitialState);
   });
 
   describe('when NO action is passed in', () => {
     it('should return the default state', () => {
       const state = searchSummaryReducer();
 
-      expect(state).toEqual(reducerInitialState);
+      expect(state).toEqual(searchSummaryReducerInitialState);
     });
   });
 
@@ -32,19 +21,21 @@ describe('Summary Reducer', () => {
       it('should set the current filters with the default info', () => {
         const state = searchSummaryReducer(undefined, { type: SET_SEARCH_FILTERS });
 
-        expect(state).toEqual(expect.objectContaining({ filters: filtersInitialState }));
+        expect(state).toEqual(
+          expect.objectContaining({ filters: searchSummaryReducerInitialState.filters }),
+        );
       });
     });
 
     it('should update the state with the current filter info', () => {
       const filters = {
-        ...filtersInitialState,
+        ...searchSummaryReducerInitialState.filter,
         dropDown: 'both',
       };
 
       const state = searchSummaryReducer(undefined, {
         type: SET_SEARCH_FILTERS,
-        filters,
+        payload: { filters },
       });
 
       expect(state).toEqual(expect.objectContaining({ filters }));
@@ -57,20 +48,20 @@ describe('Summary Reducer', () => {
         const state = searchSummaryReducer(undefined, { type: SET_IS_LOADING_SEARCH });
 
         expect(state).toEqual(
-          expect.objectContaining({ isLoadingSearch: { isLoadingSearch: false } }),
+          expect.objectContaining({
+            isLoadingSearch: searchSummaryReducerInitialState.isLoadingSearch,
+          }),
         );
       });
     });
 
     it('should update the state with the current filter info', () => {
-      const isLoadingSearch = true;
-
       const state = searchSummaryReducer(undefined, {
         type: SET_IS_LOADING_SEARCH,
-        isLoadingSearch,
+        payload: { isLoadingSearch: true },
       });
 
-      expect(state).toEqual(expect.objectContaining({ isLoadingSearch: { isLoadingSearch } }));
+      expect(state).toEqual(expect.objectContaining({ isLoadingSearch: true }));
     });
   });
 
@@ -80,7 +71,7 @@ describe('Summary Reducer', () => {
 
       const state = searchSummaryReducer(undefined, {
         type: SET_SEARCH_RESULTS,
-        searchResults,
+        payload: { searchResults },
       });
 
       expect(state).toEqual(expect.objectContaining({ searchResults: { data: searchResults } }));

@@ -4,7 +4,7 @@ import { getSearchResults, getIsLoadingSearch } from '../../state/selectors';
 
 const useSearchFilterBar = () => {
   const searchResults = useSelector(getSearchResults);
-  const { isLoadingSearch } = useSelector(getIsLoadingSearch);
+  const isLoadingSearch = useSelector(getIsLoadingSearch);
 
   return {
     searchResults,

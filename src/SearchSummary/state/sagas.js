@@ -2,34 +2,33 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { getSearchFromGoogle, getSearchFromBing } from '../../services';
 
-import { PERFORM_SEARCH } from './actionTypes';
+import { PERFORM_BING_SEARCH, PERFORM_BOTH_SEARCH, PERFORM_GOOGLE_SEARCH } from './actionTypes';
 import { setSearchResults, setIsLoadingSearch } from './actions';
 import { getSummaryFilters } from './selectors';
 
-function* runPerformSearchSaga() {
-  const params = yield select(getSummaryFilters);
-  const searchEngine = params.dropDown;
-  const seachQuery = params.textBar;
+function* runGoogleSearchSaga() {
   yield put(setIsLoadingSearch(true));
+  const { textBar } = yield select(getSummaryFilters);
+  const searchResults = yield call(getSearchFromGoogle, textBar);
 
-  if (searchEngine === 'google') {
-    const searchResults = yield call(getSearchFromGoogle, seachQuery);
-    yield put(setSearchResults(searchResults));
-    yield put(setIsLoadingSearch(false));
+  yield put(setSearchResults(searchResults));
+  yield put(setIsLoadingSearch(false));
+}
 
-    return;
-  }
+function* runBingSearchSaga() {
+  yield put(setIsLoadingSearch(true));
+  const { textBar } = yield select(getSummaryFilters);
+  const searchResults = yield call(getSearchFromBing, textBar);
 
-  if (searchEngine === 'bing') {
-    const searchResults = yield call(getSearchFromBing, seachQuery);
-    yield put(setSearchResults(searchResults));
-    yield put(setIsLoadingSearch(false));
+  yield put(setSearchResults(searchResults));
+  yield put(setIsLoadingSearch(false));
+}
 
-    return;
-  }
-
-  const googleSearchResults = yield call(getSearchFromGoogle, seachQuery);
-  const bingSearchResults = yield call(getSearchFromBing, seachQuery);
+function* runBothSearchSaga() {
+  yield put(setIsLoadingSearch(true));
+  const { textBar } = yield select(getSummaryFilters);
+  const googleSearchResults = yield call(getSearchFromGoogle, textBar);
+  const bingSearchResults = yield call(getSearchFromBing, textBar);
   const searchResults = [...googleSearchResults, ...bingSearchResults];
 
   yield put(setSearchResults(searchResults));
@@ -37,7 +36,9 @@ function* runPerformSearchSaga() {
 }
 
 function* runPerformSearchWatcher() {
-  yield takeLatest(PERFORM_SEARCH, runPerformSearchSaga);
+  yield takeLatest(PERFORM_GOOGLE_SEARCH, runGoogleSearchSaga);
+  yield takeLatest(PERFORM_BING_SEARCH, runBingSearchSaga);
+  yield takeLatest(PERFORM_BOTH_SEARCH, runBothSearchSaga);
 }
 
-export { runPerformSearchWatcher, runPerformSearchSaga };
+export { runPerformSearchWatcher };
